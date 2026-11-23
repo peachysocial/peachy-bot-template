@@ -1,0 +1,34 @@
+# Render Blueprint: a background worker and a Postgres database for the bot's
+# encrypted store. Render has no persistent disk for workers by default, so the
+# store goes in Postgres; every value is encrypted under PEACHY_BOT_STORE_KEY
+# before it is written, and that key is set in Render's dashboard, not here.
+services:
+  - type: worker
+    name: peachy-bot
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    plan: starter
+    # One instance only: one store is one bot device.
+    numInstances: 1
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: peachy-bot-db
+          property: connectionString
+      # Set in the dashboard when Render asks; never in this file.
+      - key: PEACHY_BOT_STORE_KEY
+        sync: false
+      # The bot's one-time Connect code, for its first start. It links the
+      # bot while the store holds none and is ignored after; delete it once
+      # the logs say "Linked ✓".
+      - key: PEACHY_CONNECT_CODE
+        sync: false
+      - key: PEACHY_BOT_ALLOW
+        sync: false
+
+databases:
+  - name: peachy-bot-db
+    plan: basic-256mb
+    postgresMajorVersion: "16"
+    # Reachable only from your Render services, not from the internet.
+    ipAllowList: []
