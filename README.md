@@ -309,4 +309,4 @@ More: https://pchy.app/developers/privacy-labels.
 
 ## License
 
-MIT. See `LICENSE`.
+MIT-0 (MIT No Attribution): copy it into your own bot without keeping a copyright notice. See `LICENSE`.
