@@ -1,9 +1,16 @@
-# Peachy bot template
+# Your bot's name
 
-A starting point for a bot on [Peachy](https://pchy.app), built on the
-`@peachysocial/bot` SDK. Try it in your terminal in a few minutes, with no account;
-then link it to a bot you create in Peachy, and it replies to its first
-message.
+What your bot does, in a sentence or two, and who runs it. It runs on
+[Peachy](https://pchy.app), built on the `@peachysocial/bot` SDK. To report
+a security issue in it, see [SECURITY.md](SECURITY.md).
+
+> This README and `SECURITY.md` are yours to fill in: replace the lines
+> above with your bot's own, and `<your contact>` in `SECURITY.md` with
+> where reports should go. The guide below is how to build and run the bot;
+> keep it or trim it.
+
+Try it in your terminal in a few minutes, with no account; then link it to
+a bot you create in Peachy, and it replies to its first message.
 
 Out of the box it does one thing: `/pick pizza, tacos, sushi` replies with
 one of the choices, and in a group sends it to the chat too. Change `bot.ts`
